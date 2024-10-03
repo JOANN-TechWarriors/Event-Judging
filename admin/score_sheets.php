@@ -9,6 +9,7 @@ include('session.php');
 <head>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../images/logo copy.png"/>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -157,90 +158,6 @@ include('session.php');
             transition: max-height 0.2s ease-out;
         }
 
-        .header {
-        background-color: #f8f9fa;
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .header .profile-dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .header .profile-dropdown img {
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-    }
-
-    .header .profile-dropdown .dropdown-menu {
-        display: none;
-        position: absolute;
-        right: 0;
-        background-color: #fff;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-        overflow: hidden;
-        z-index: 1000;
-    }
-
-    .header .profile-dropdown:hover .dropdown-menu {
-        display: block;
-    }
-
-    .header .profile-dropdown .dropdown-menu a {
-        display: block;
-        padding: 10px;
-        color: #333;
-        text-decoration: none;
-    }
-
-    .header .profile-dropdown .dropdown-menu a:hover {
-        background-color: #f1f1f1;
-    }
-    @media (max-width: 768px) {
-        .sidebar {
-            width: 100%;
-            height: auto;
-            position: relative;
-            overflow: visible;
-        }
-
-        .sidebar.collapsed {
-            width: 100%;
-        }
-
-        .main {
-            margin-left: 0;
-        }
-
-        .sidebar .toggle-btn {
-            display: block;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .sidebar-heading {
-            font-size: 14px;
-        }
-
-        .sidebar ul li a {
-            font-size: 14px;
-        }
-
-        .header {
-            padding: 5px 10px;
-        }
-
-        .header .profile-dropdown img {
-            width: 30px;
-            height: 30px;
-        }
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .sidebar {
@@ -273,23 +190,10 @@ include('session.php');
         </ul>
     </div>
 
-    <!-- Header -->
-    <div class="header">
-        <div>
-            <!-- Add any left-aligned content here if needed -->
-        </div>
-        <div class="profile-dropdown">
-           <div style="font-size:small;"> <?php echo $name; ?></div>
-            <div class="dropdown-menu">
-                <a href="edit_organizer.php"> Account Settings</a>
-                <a href="logout.php"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
-            </div>
-        </div>
-    </div>
     <!-- Subhead ================================================== -->
     <div class="main" id="main-content">
         <div class="container">
-            <h1 style="font-size:35px;">Score Sheets</h1>
+            <h1>Score Sheets</h1>
         </div>
 
         <div class="span15">
@@ -450,26 +354,9 @@ include('session.php');
     <script src="..//assets/js/holder/holder.js"></script>
     <script src="..//assets/js/google-code-prettify/prettify.js"></script>
 
-    <!-- SweetAlert JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="..//assets/js/application.js"></script>
 
     <script>
-        
-        document.getElementById('logout').addEventListener('click', function(event) {
-        event.preventDefault();
-        Swal.fire({
-            title: 'Are you sure you want to log out?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes',
-            cancelButtonText: 'No'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '..//index.php';
-            }
-        });
-    });
        
         document.getElementById("toggle-btn").addEventListener("click", function () {
             var sidebar = document.getElementById("sidebar");
