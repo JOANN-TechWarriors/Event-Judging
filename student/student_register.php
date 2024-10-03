@@ -6,10 +6,10 @@ include('../admin/header.php');
 ?>
 
 <body style="background:url(../img/Community-College-Madridejos.jpeg)">
- <style>
+<style>
         body { font-family: Arial, sans-serif; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
-        .modal-content { background: white; margin: 5% auto; padding: 20px; width: 50%; }
+        .modal-content { background: white; margin: 5% auto; padding: 20px; width: 50%; max-height: 500px; overflow: scroll; }
         .close { cursor: pointer; float: right; }
     </style>
 <div class="container">
