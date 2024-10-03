@@ -78,6 +78,7 @@ include('../admin/header.php');
          <b>TERMS AND CONDITIONS <br>
 Welcome to MCC Event Judging. By using our website and services, you agree to the following terms ad conditions.</b>
 <br>
+                  <br>
 1. Account Creation:<br>
    - Only enrolled students can create accounts<br>
    - Accurate information required<br>
