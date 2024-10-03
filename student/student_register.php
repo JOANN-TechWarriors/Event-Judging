@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+include('../admin/header.php');
+include('../admin/session.php');
+?>
 
 <body style="background:url(../img/Community-College-Madridejos.jpeg)">
 
