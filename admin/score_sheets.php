@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-include('header2.php')
+include('header2.php');
 include('session.php');
 ?>
 
