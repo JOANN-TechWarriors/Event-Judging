@@ -128,7 +128,7 @@ if (isset($_SESSION['login_error'])) {
                       &nbsp;
                       <button style="width: 160px !important;" type="submit" class="btn btn-primary pull-right"><i class="icon-ok"></i> <strong>LOGIN</strong></button>
                       &nbsp;
-                      <strong><a href="hjfkd.php">Sign Up</a></strong> &nbsp;&nbsp;&nbsp;<br><br>
+                      <strong><a href="student_register.php">Sign Up</a></strong> &nbsp;&nbsp;&nbsp;<br><br>
                     </td>
                   </tr>
                 </table>
