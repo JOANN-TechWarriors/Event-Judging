@@ -159,22 +159,6 @@
         .fa:hover {
             opacity: 0.5;
         }
-        .fa-facebook {
-            background: #3B5998;
-            color: white;
-        }
-        .fa-twitter {
-            background: #55ACEE;
-            color: white;
-        }
-        .fa-youtube {
-            background: #bb0000;
-            color: white;
-        }
-        .fa-instagram {
-            background: orange;
-            color: white;
-        }
         .home{
             background-size: cover;
             background-position: center;
@@ -285,6 +269,7 @@
             <li>
                 <a href="#login">Login</a>
                 <div class="dropdown">
+                    <a href="admin/admin_login.php">Admin Login</a>
                     <a href="admin/index.php">Organizer Login</a>
                     <a href="tabulator/index.php">Tabulator Login</a>
                     <a href="judge/index.php">Judge Login</a>
