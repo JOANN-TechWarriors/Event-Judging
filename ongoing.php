@@ -325,12 +325,12 @@ $stmt->execute();
 $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+<div id="mainEventCarousel" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <?php if (count($events) > 0) : ?>
       <?php foreach ($events as $index => $event) : ?>
         <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-          <img class="d-block w-80" src="img/<?= htmlspecialchars($event['banner']) ?>" alt="<?= htmlspecialchars($event['event_name']) ?>">
+          <img class="d-block w-100" src="img/<?= htmlspecialchars($event['banner']) ?>" alt="<?= htmlspecialchars($event['event_name']) ?>">
           <div class="carousel-caption d-none d-md-block">
             <h5><?= htmlspecialchars($event['event_name']) ?></h5>
             <p><?= htmlspecialchars(date("F j, Y", strtotime($event['date_start']))) ?> - <?= htmlspecialchars(date("F j, Y", strtotime($event['date_end']))) ?><br>Location: <?= htmlspecialchars($event['place']) ?></p>
@@ -347,6 +347,14 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
     <?php endif; ?>
   </div>
+  <a class="carousel-control-prev" href="#mainEventCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#mainEventCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
 
 <?php
