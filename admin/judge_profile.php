@@ -17,27 +17,27 @@ $judge_ctr=$row['judge_ctr'];
 $subevent_id=$row['subevent_id'];
 
 ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
-            <script>
-            
-            window.location.href = "judge_panel.php?judge_ctr=<?php echo $judge_ctr; ?>&subevent_id=<?php echo $subevent_id; ?>";
-            </script>
+<script>
+swal({
+	title: "Success!",
+	text: "Redirecting to judge panel...",
+	type: "success",
+	timer: 2000,
+	showConfirmButton: false
+}, function(){
+	window.location.href = "judge_panel.php?judge_ctr=<?php echo $judge_ctr; ?>&subevent_id=<?php echo $subevent_id; ?>";
+});
+</script>
 <?php }
 else
 { ?>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-Swal.fire({
-    title: 'Error!',
-    text: 'Wrong code',
-    icon: 'error',
-    confirmButtonText: 'OK'
-}).then((result) => {
-    if (result.isConfirmed) {
-        window.location = 'welcome.php';
-    }
-});
+alert('wrong code');
+ 			
+window.location = 'welcome.php';
 </script>
     
 <?php }
