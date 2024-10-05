@@ -228,6 +228,30 @@
         .main_list ul li:hover .dropdown {
             display: block;
         }
+        /* Main Event Carousel styles */
+        #mainEventCarousel {
+            width: 100%;
+            height: 100vh; /* 50% of the viewport height */
+            overflow: hidden;
+        }
+
+        #mainEventCarousel .carousel-inner,
+        #mainEventCarousel .carousel-item {
+            height: 100%;
+        }
+
+        #mainEventCarousel .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This maintains aspect ratio */
+        }
+
+        #mainEventCarousel .carousel-caption {
+            bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
 
         .dropdown {
             display: none;
