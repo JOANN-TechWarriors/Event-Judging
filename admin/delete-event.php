@@ -1,41 +1,33 @@
 <?php
-$host = '127.0.0.1';
-$username = 'u510162695_judging_root';
-$password = '1Judging_root';  // Replace with the actual password
-$dbname = 'u510162695_judging';
+session_start();
+include('dbcon.php'); // Include your PDO database connection file
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $event_id = $_POST['event_id'];
 
-$conn = new mysqli($host, $username, $password, $dbname);
+    try {
+        // Start transaction
+        $conn->beginTransaction();
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+        // Delete related records in sub_event table
+        $stmt = $conn->prepare("DELETE FROM sub_event WHERE mainevent_id = :event_id");
+        $stmt->bindParam(':event_id', $event_id);
+        $stmt->execute();
 
-// Get event data from form submission
-$event_id = $_POST['id'];
+        // Delete the event from main_event table
+        $stmt = $conn->prepare("DELETE FROM main_event WHERE mainevent_id = :event_id");
+        $stmt->bindParam(':event_id', $event_id);
+        $stmt->execute();
 
-// Delete event in database
-$sql = "DELETE FROM upcoming_events WHERE id = $event_id";
-if ($conn->query($sql) === TRUE) {
-    echo "<script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Event deleted successfully',
-            showConfirmButton: false,
-            timer: 1500
-        }).then(function() {
-            window.location = 'home.php.php'; // Redirect to another page if needed
-        });
-    </script>";
+        // Commit transaction
+        $conn->commit();
+
+        echo json_encode(['success' => true, 'message' => 'Event deleted successfully']);
+    } catch (PDOException $e) {
+        // Rollback transaction on error
+        $conn->rollBack();
+        echo json_encode(['success' => false, 'message' => 'Failed to delete event: ' . $e->getMessage()]);
+    }
 } else {
-    echo "<script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Error deleting event',
-            text: '" . $conn->error . "',
-        });
-    </script>";
+    echo json_encode(['success' => false, 'message' => 'Invalid request method']);
 }
-
-$conn->close();
-?>
