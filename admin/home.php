@@ -18,7 +18,7 @@ if (isset($_POST['create'])) {
 
     // Insert event details into the database using PDO
     $sql = "INSERT INTO main_event (event_name, status, organizer_id, date_start, date_end, place, banner) 
-            VALUES (:event_name, 'deactivated', :organizer_id, :date_start, :date_end, :place, :banner)";
+            VALUES (:event_name, 'activated', :organizer_id, :date_start, :date_end, :place, :banner)";
     $stmt = $conn->prepare($sql);
 
     $stmt->bindParam(':event_name', $event_name);
@@ -62,12 +62,14 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="shortcut icon" href="../images/logo copy.png"/>
+
     <style>
-                       /* Modal Background */
+               /* Modal Background */
     .modal {
-    display: none; /* Hidden by default */
-   
-}
+        display: none; /* Hidden by default */
+       
+    }
+
     body {
         font-family: Arial, sans-serif;
         background-color: #fff;
@@ -359,6 +361,21 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         </ul>
     </div>
+    <!-- Header -->
+    <div class="header">
+        <div>
+            <!-- Add any left-aligned content here if needed -->
+        </div>
+        <div class="profile-dropdown">
+           <div style="font-size:small;"> <?php echo $name; ?></div>
+            <div class="dropdown-menu">
+                <a href="edit_organizer.php"> Account Settings</a>
+                <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> <span>LOGOUT</span></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main content -->
     <div class="main" id="main-content">
         <div class="container">
             <h1>Ongoing Events</h1>
@@ -381,7 +398,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <strong>Upload Banner:</strong><br />
-                                        <input type="file" name="banner" accept="img/*">
+                                        <input type="file" name="banner" accept="image/*">
                                     </div>
                                     <div class="form-group">
                                         <label for="main_event"><strong>Event Name:</strong></label>
@@ -398,12 +415,6 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <label for="date_end"><strong>End Date:</strong></label>
                                         <input type="date" id="date_end" name="date_end" class="form-control btn-block"
                                             style="text-indent: 5px !important; height: 30px !important;" required />
-                                    </div>
-                                   <div class="form-group">
-                                        <label for="event_time"><strong>Time:</strong></label>
-                                        <input type="time" id="event_time" name="event_time" class="form-control btn-block"
-                                               style="text-indent: 5px !important; height: 30px !important;" 
-                                               step="1800" required />
                                     </div>
                                     <div class="form-group">
                                         <label for="place"><strong>Venue:</strong></label>
@@ -425,28 +436,214 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <br> <br><br>
                 <!-- Display events -->
-                <div class="tile-container">
-    <?php foreach ($events as $event) { ?>
-    <div class="tile" data-id="<?php echo htmlspecialchars($event['mainevent_id']); ?>">
-        <div class="dropdown">
-            <button class="dropbtn">&#8942;</button>
-            <div class="dropdown-content">
-                <a href="#editEvent" class="btn btn-success edit-event" data-id="<?php echo htmlspecialchars($event['mainevent_id']); ?>">
-                    <i class="icon-pencil"></i> Edit
-                </a>
-                <a href="#" class="btn btn-danger delete-event" data-id="<?php echo htmlspecialchars($event['mainevent_id']); ?>">
-                    <i class="icon-remove"></i> Delete
-                </a>
+                        <div class="tile-container">
+            <?php foreach ($events as $event) { ?>
+            <div class="tile" data-id="<?php echo htmlspecialchars($event['mainevent_id']); ?>">
+                <div class="dropdown">
+                    <button class="dropbtn">&#8942;</button>
+                    <div class="dropdown-content">
+                        <a href="#editEvent" class="btn btn-success edit-event" data-id="<?php echo htmlspecialchars($event['mainevent_id']); ?>">
+                            <i class="icon-pencil"></i> Edit
+                        </a>
+                        <a href="#" class="btn btn-danger delete-event" data-id="<?php echo htmlspecialchars($event['mainevent_id']); ?>">
+                            <i class="icon-remove"></i> Delete
+                        </a>
+                    </div>
+                </div>
+                <h3><?php echo htmlspecialchars($event['event_name']); ?></h3>
+                <p><?php echo date('m-d-Y', strtotime($event['date_start'])); ?> to
+                <?php echo date('m-d-Y', strtotime($event['date_end'])); ?></p>
+                <p><?php echo htmlspecialchars($event['place']); ?></p>
+            </div>
+            <?php } ?>
+        </div>
+
+
+<!-- Update the edit event modal HTML -->
+<div id="editEventModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Event</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editEventForm" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="edit_event_id" id="edit_event_id">
+                    
+                    <div class="form-group">
+                        <label for="edit_banner">Banner:</label>
+                        <input type="file" class="form-control" id="edit_banner" name="edit_banner">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit_main_event">Event Name:</label>
+                        <input type="text" class="form-control btn-block" style="text-indent: 7px !important; height: 30px !important;" id="edit_main_event" name="edit_main_event" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit_date_start">Start Date:</label>
+                        <input type="date" class="form-control btn-block" style="height: 30px !important;" id="edit_date_start" name="edit_date_start" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit_date_end">End Date:</label>
+                        <input type="date" class="form-control btn-block" style="height: 30px !important;" id="edit_date_end" name="edit_date_end" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit_place">Venue:</label>
+                        <input type="text" class="form-control btn-block" style="height: 30px !important;" id="edit_place" name="edit_place" required>
+                    </div>
+                    
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
-        <h3><?php echo htmlspecialchars($event['event_name']); ?></h3>
-        <p><?php echo date('m-d-Y', strtotime($event['date_start'])); ?> to
-        <?php echo date('m-d-Y', strtotime($event['date_end'])); ?></p>
-        <p><?php echo htmlspecialchars($event['place']); ?></p>
     </div>
-    <?php } ?>
 </div>
 
+
+        <div class="collapse indent" id="editEvent<?php echo $main_event_id; ?>">
+                
+                                     <!-- start of edit of main events -->
+                                     
+                                      <h4>Edit Event Details</h4>
+                                      <table align="center" class="table table-bordered" id="example">
+                                      <tr>
+                                      <td>
+                                      
+                                      <form method="POST">
+      
+      
+                                      <?php   
+                                          $edit_event_query = $conn->query("select * from main_event where organizer_id='$session_id' and mainevent_id='$main_event_id'") or die(mysql_error());
+                                        while ($edit_event_row = $edit_event_query->fetch()) 
+                                        {
+                                            $edit_mainevent_id=$edit_event_row['mainevent_id'];
+                                           
+                                             
+                                            ?>  
+                                      
+                                      
+                                        <input name="main_event_id" type="hidden" value="<?php echo $edit_mainevent_id; ?>" />
+                                      
+                                        <strong>Event Name:</strong><br /> 
+                                        <input type="text" name="main_event" class="form-control btn-block" style="text-indent: 7px !important; height: 30px !important;" placeholder="Event Name" required="true" value="<?php echo $edit_event_row['event_name']; ?>" />
+                                        <br /> 
+                                        
+                                        <strong>Date Start:</strong><br /> 
+                                        <input type="date" name="date_start" min="<?php echo date('Y-m-d');?>" class="form-control btn-block" style="height: 30px !important;" required="true" value="<?php echo $edit_event_row['date_start']; ?>"/>
+                                        <br /> 
+                                        
+                                        <strong>Date End:</strong><br /> 
+                                        <input type="date" name="date_end" min="<?php echo date('Y-m-d');?>" class="form-control btn-block" style="height: 30px !important;" required="true" value="<?php echo $edit_event_row['date_end']; ?>"/>
+                                        <br /> 
+
+                                        <strong>Time Start</strong>:<br />   
+                                        <input type="time" name="event_time" type="text" required="true" placeholder="hh:mm" class="form-control btn-block">
+                                        <br/>
+
+                                        <strong>Time End</strong>:<br />
+                                        <input type="time" name="event_time" type="text" required="true" placeholder="hh:mm" class="form-control btn-block">
+                                        <br/>
+                                        
+                                        <strong>Venue:</strong><br /> 
+                                        <textarea placeholder="Enter Sub-Event Venue" rows="2" name="place" class="form-control btn-block" style="text-indent: 7px !important;" required="true"><?php echo $edit_event_row['place']; ?></textarea>
+                                 
+                                     
+                                      
+                                      <?php } ?>
+                               
+                                      <div class="modal-footer">
+                                        <button name="edit_event" class="btn btn-success"><i class="icon-ok"></i> <strong>UPDATE</strong></button>
+                                      </div>
+                                      
+                                      </form>
+                                      
+                                      </td>
+                                      </tr>
+                                      </table>
+       
+                  
+                                    <!-- end of edit of main events -->
+                </div>
+    </div>
+    <?php
+if (isset($_POST['edit_event'])) {
+    $main_event_id = $_POST['main_event_id'];
+    $event_name = $_POST['main_event'];
+    $date_start = $_POST['date_start'];
+    $date_end = $_POST['date_end'];
+    $event_place = $_POST['place'];
+
+    $conn->query("UPDATE main_event SET event_name='$event_name', date_start='$date_start', date_end='$date_end', place='$event_place' WHERE mainevent_id='$main_event_id'");
+    ?>
+    <script>
+        Swal.fire({
+            title: 'Success!',
+            text: 'Event <?php echo $event_name; ?> updated successfully!',
+            icon: 'success'
+        }).then(() => {
+            window.location = 'home.php';
+        });
+    </script>
+    <?php
+}
+?>
+
+<?php
+if (isset($_POST['deleteEvent'])) {
+    $main_event_id = $_POST['main_event_id'];
+    $entered_pass = $_POST['entered_pass'];
+    $ma_name = $_POST['ma_name'];
+
+    if ($entered_pass == $check_pass) {
+        $delquery = $conn->query("SELECT * FROM sub_event WHERE mainevent_id='$main_event_id'") or die(mysql_error());
+        while ($del_row = $delquery->fetch()) {
+            $sub_event_id = $del_row['subevent_id'];
+
+            $conn->query("DELETE FROM contestants WHERE subevent_id='$sub_event_id'");
+            $conn->query("DELETE FROM criteria WHERE subevent_id='$sub_event_id'");
+            $conn->query("DELETE FROM judges WHERE subevent_id='$sub_event_id'");
+            $conn->query("DELETE FROM sub_results WHERE subevent_id='$sub_event_id'");
+        }
+
+        $conn->query("DELETE FROM sub_event WHERE mainevent_id='$main_event_id'");
+        $conn->query("DELETE FROM main_event WHERE mainevent_id='$main_event_id'");
+        ?>
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: 'Event: <?php echo $ma_name; ?> and its Sub-Events and related data deleted successfully.',
+                icon: 'success'
+            }).then(() => {
+                window.location = 'home.php';
+            });
+        </script>
+        <?php
+    } else {
+        ?>
+        <script>
+            Swal.fire({
+                title: 'Error!',
+                text: 'Confirmation did not match. Try again.',
+                icon: 'error'
+            }).then(() => {
+                window.location = 'home.php';
+            });
+        </script>
+        <?php
+    }
+}
+?>
+            </div>
 
         </section>
     <script src="..//assets/js/jquery.js"></script>
@@ -492,7 +689,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Redirect to logout.php
-                    window.location.href = 'logout.php';
+                    window.location.href = '..//index.php';
                 }
             });
         });
@@ -548,5 +745,171 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         this.value = `${hours}:${minutes}`;
     });
 </script>
+<script>
+$(document).ready(function() {
+    // Handle edit button click
+    $('.edit-event').on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        var eventId = $(this).data('id');
+        
+        // Show loading state
+        Swal.fire({
+            title: 'Loading...',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+        
+        // Fetch event details
+        $.ajax({
+            url: 'get_event_details.php',
+            type: 'POST',
+            data: { event_id: eventId },
+            success: function(response) {
+                Swal.close();
+                
+                // Parse the response if it's a string
+                if (typeof response === 'string') {
+                    response = JSON.parse(response);
+                }
+                
+                // Populate form fields
+                $('#edit_event_id').val(response.mainevent_id);
+                $('#edit_main_event').val(response.event_name);
+                $('#edit_date_start').val(response.date_start);
+                $('#edit_date_end').val(response.date_end);
+                $('#edit_place').val(response.place);
+                
+                // Show the modal
+                $('#editEventModal').modal('show');
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to fetch event details'
+                });
+            }
+        });
+    });
+    
+    // Handle save changes button click
+    $('#saveChanges').on('click', function() {
+        var formData = new FormData($('#editEventForm')[0]);
+        
+        $.ajax({
+            url: 'update_event.php',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Parse the response if it's a string
+                if (typeof response === 'string') {
+                    response = JSON.parse(response);
+                }
+                
+                if (response.success) {
+                    $('#editEventModal').modal('hide');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: response.message
+                    }).then(function() {
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.message || 'Failed to update event'
+                    });
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to update event'
+                });
+            }
+        });
+    });
+});
+</script>
+<script>
+    $(document).ready(function() {
+        // Handle delete button click
+        $('.delete-event').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            var eventId = $(this).data('id');
+            
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Show loading state
+                    Swal.fire({
+                        title: 'Deleting...',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                    
+                    // Send delete request
+                    $.ajax({
+                        url: 'delete-event.php',
+                        type: 'POST',
+                        data: { event_id: eventId },
+                        success: function(response) {
+                            Swal.close();
+                            
+                            // Parse the response if it's a string
+                            if (typeof response === 'string') {
+                                response = JSON.parse(response);
+                            }
+                            
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Deleted!',
+                                    text: response.message
+                                }).then(function() {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: response.message || 'Failed to delete event'
+                                });
+                            }
+                        },
+                        error: function() {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Failed to connect to the server'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
+    </script>
 </body>
+
 </html>
