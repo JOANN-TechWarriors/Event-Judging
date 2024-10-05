@@ -316,8 +316,8 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
           <img class="d-block w-100" src="img/<?= htmlspecialchars($event['banner']) ?>" alt="<?= htmlspecialchars($event['event_name']) ?>">
           <div class="carousel-caption d-none d-md-block">
-            <h5><?= htmlspecialchars($event['event_name']) ?></h5>
-            <p><?= htmlspecialchars(date("F j, Y", strtotime($event['date_start']))) ?> - <?= htmlspecialchars(date("F j, Y", strtotime($event['date_end']))) ?><br>Location: <?= htmlspecialchars($event['place']) ?></p>
+            <h5 style="color:white; font-size: large;"><?= htmlspecialchars($event['event_name']) ?></h5>
+            <p><?= htmlspecialchars(date("F j, Y", strtotime($event['date_start']))) ?> - <?= htmlspecialchars(date("F j, Y", strtotime($event['date_end']))) ?><br><?= htmlspecialchars($event['place']) ?></p>
           </div>
         </div>
       <?php endforeach; ?>
