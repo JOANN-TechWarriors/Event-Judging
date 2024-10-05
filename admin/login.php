@@ -66,22 +66,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             });
         </script>
         <?php
-    }
-} else {
-    ?>
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Invalid User or Password',
-            confirmButtonText: 'OK'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location = 'index.php';
-            }
-        });
-    </script>
-    <?php
 }
 ?>
 </body>
