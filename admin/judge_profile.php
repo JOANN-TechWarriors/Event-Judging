@@ -19,32 +19,37 @@ $subevent_id=$row['subevent_id'];
 
 ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-
-<script>
-<?php if (/* your condition here */) { ?>
-	swal({
-		title: "Success!",
-		text: "Redirecting to judge panel...",
-		type: "success",
-		timer: 2000,
-		showConfirmButton: false
-	}, function(){
-		window.location.href = "judge_panel.php?judge_ctr=<?php echo $judge_ctr; ?>&subevent_id=<?php echo $subevent_id; ?>";
-	});
-<?php } else { ?>
-	swal({
-		title: "Error!",
-		text: "Wrong code",
-		type: "error",
-		confirmButtonText: "OK"
-	}, function(){
-		window.location = 'welcome.php';
-	});
-<?php } ?>
-</script>
-    
-<?php }
+<?php
+if (/* your condition here */) {
+?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            title: 'Success!',
+            text: 'Redirecting...',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false
+        }).then(() => {
+            window.location.href = "judge_panel.php?judge_ctr=<?php echo $judge_ctr; ?>&subevent_id=<?php echo $subevent_id; ?>";
+        });
+    </script>
+<?php
+} else {
+?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            title: 'Error!',
+            text: 'Wrong code',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location = 'welcome.php';
+        });
+    </script>
+<?php
+}
 ?>
 
 
