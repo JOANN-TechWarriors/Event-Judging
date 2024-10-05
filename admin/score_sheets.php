@@ -189,8 +189,21 @@ include('session.php');
             <li><a href="rev_main_event.php"><i class="fas fa-chart-line"></i> <span>DATA REVIEWS</span></a></li>
         </ul>
     </div>
-
-    <!-- Subhead ================================================== -->
+    <!-- Header -->
+    <div class="header">
+        <div>
+            <!-- Add any left-aligned content here if needed -->
+        </div>
+        <div class="profile-dropdown">
+           <div style="font-size:small;"> <?php echo $name; ?></div>
+            <div class="dropdown-menu">
+                <a href="edit_organizer.php"> Account Settings</a>
+                <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> <span>LOGOUT</span></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main content -->
     <div class="main" id="main-content">
         <div class="container">
             <h1>Score Sheets</h1>
