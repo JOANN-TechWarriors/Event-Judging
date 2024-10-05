@@ -104,7 +104,14 @@ include('session.php');
         .sidebar ul li a:hover {
             background-color: #555;
         }
-    
+        .header{
+        background-color: #f8f9fa;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        }
         .header .profile-dropdown {
             position: relative;
             display: inline-block;
