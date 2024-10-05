@@ -29,7 +29,7 @@ else
 <script>
 alert('wrong code');
  			
-window.location = 'selection.php';
+window.location = 'welcome.php';
 </script>
     
 <?php }
