@@ -11,6 +11,7 @@
   ?>
 <head>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link rel="shortcut icon" href="../images/logo copy.png"/>
 <style>
     body {
       font-family: Arial, sans-serif;

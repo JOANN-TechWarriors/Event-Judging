@@ -63,6 +63,9 @@ if (isset($_POST['admin_login'])) {
 <?php
 include_once('header2.php');
 ?>
+<head>
+<link rel="shortcut icon" href="../images/logo copy.png"/>
+
 <style>
   .alert {
   font-size: 14px;
@@ -100,7 +103,7 @@ thead th {
   padding: 10px; /* Adjust the padding as needed */
 }
 </style>
-
+</head>
 <body id="login" style="background:url(../img/Community-College-Madridejos.jpeg)">  
 
 <div class="container">

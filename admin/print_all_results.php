@@ -9,7 +9,9 @@
      
 <!DOCTYPE html>
 <html lang="en">
- 
+ <head>
+ <link rel="shortcut icon" href="../images/logo copy.png"/>
+  </head>
 <style style="text/css">
 @media print {
     footer {page-break-after: always;}

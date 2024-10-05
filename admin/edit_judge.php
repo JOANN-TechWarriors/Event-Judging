@@ -13,7 +13,9 @@
     $judge_id=$_GET['judge_id'];
      
   ?>
-  
+  <head>
+  <link rel="shortcut icon" href="../images/logo copy.png"/>
+  </head>
   <body>
     <!-- Navbar
     ================================================== -->

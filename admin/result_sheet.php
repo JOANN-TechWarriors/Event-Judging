@@ -8,13 +8,14 @@
   $active_sub_event=$_GET['event_id'];
     ?>
     
-    
+    <head>
+    <link rel="shortcut icon" href="../images/logo copy.png"/>
 <style style="text/css">
 @media print {
     footer {page-break-after: always;}
 }
 </style>
-
+</head>
 
   <body data-spy="scroll" data-target=".bs-docs-sidebar">
  

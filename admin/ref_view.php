@@ -8,6 +8,9 @@
  
  
     ?>
+  <head>
+  <link rel="shortcut icon" href="../images/logo copy.png"/>
+  </head>
 
   <body data-spy="scroll" data-target=".bs-docs-sidebar">
  

@@ -8,6 +8,9 @@
     include('session.php');
  
   ?>
+  <head>
+  <link rel="shortcut icon" href="../images/logo copy.png"/>
+  </head>
   
   <body>
     <!-- Navbar

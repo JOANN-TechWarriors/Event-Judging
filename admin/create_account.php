@@ -6,6 +6,9 @@
     // Include your database connection
     include('dbcon.php'); // Make sure this file contains the $conn variable and the connection logic.
     ?>
+    <head>    
+      <link rel="shortcut icon" href="../images/logo copy.png"/>
+    </head>
   <body>
   <style>
         body { font-family: Arial, sans-serif; }
