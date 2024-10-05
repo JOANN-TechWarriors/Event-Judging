@@ -110,6 +110,14 @@
     .sidebar ul li a:hover {
       background-color: #555;
     }
+    .header{
+        background-color: #f8f9fa;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+    }
     .header .profile-dropdown {
         position: relative;
         display: inline-block;
@@ -469,6 +477,21 @@
       }
     });
   }
+  document.getElementById('logout').addEventListener('click', function(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Are you sure you want to log out?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to logout.php
+                    window.location.href = '..//index.php';
+                }
+            });
+        });
 
   $('#eventStart, #eventEnd, #updateeventStart, #updateeventEnd').on('change', function() {
     validateTimeInput(this);
