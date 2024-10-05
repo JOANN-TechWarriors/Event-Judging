@@ -66,7 +66,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             });
         </script>
         <?php
-}
-?>
+    }
+    ?>
 </body>
 </html>
