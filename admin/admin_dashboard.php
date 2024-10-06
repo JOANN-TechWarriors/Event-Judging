@@ -271,7 +271,7 @@ if (!isset($_SESSION['admin_id'])) {
                         <h4 class="font-weight-normal mb-3" style="font-size: 20px;">Ongoing Events</h4>
                         <?php 
                         $sql = "SELECT count(1) FROM sub_event";
-                        $result = mysqli_query($database, $sql);
+                        $result = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result);
                         $ongoing_events = $row[0];
                         ?>
@@ -286,7 +286,7 @@ if (!isset($_SESSION['admin_id'])) {
                         <?php 
                         $currentDate = date("Y-m-d");
                         $sql = "SELECT COUNT(*) FROM upcoming_events WHERE DATE(start_date) > '$currentDate'";
-                        $result = mysqli_query($database, $sql);
+                        $result = mysqli_query($conn, $sql);
                         $count = mysqli_fetch_array($result)[0];
                         $upcoming_events = $count;
                         ?>
