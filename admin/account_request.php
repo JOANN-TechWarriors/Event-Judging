@@ -277,7 +277,7 @@ if (isset($_POST['accept'])) {
 
     <!-- Main content -->
     <div class="main" id="main">
-        <h1>Dashboard</h1>
+        <h1>Account Request</h1>
         <div class="row">
             <div class="col-md-12">
             <div class="card shadow p-3" style="overflow-y: hidden;">
