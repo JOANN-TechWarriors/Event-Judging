@@ -270,7 +270,7 @@ if (isset($_POST['accept'])) {
         <div class="profile-dropdown">
            <div style="font-size:small;"> Administrator</div>
             <div class="dropdown-menu">
-                <a href="admin_logout.php"><i class="fas fa-sign-out-alt"></i> <span>LOGOUT</span></a>
+                <a href="admin_logout.php"><i class="fas fa-sign-out-alt"></i> <span>Sign out</span></a>
             </div>
         </div>
     </div>
