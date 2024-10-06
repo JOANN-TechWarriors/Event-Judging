@@ -7,18 +7,21 @@ if (!isset($_SESSION['admin_id'])) {
 <!DOCTYPE html>
 <html lang="en">
 <?php 
+
+
 // Connect to database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "judging";
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$host = '127.0.0.1';
+$username = 'u510162695_judging_root';
+$password = '1Judging_root';  // Replace with the actual password
+$dbname = 'u510162695_judging';
 
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+$conn = new mysqli($host, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
 
 if (isset($_POST['accept'])) {
     $org_id = $_POST['org_id'];
