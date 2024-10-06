@@ -9,6 +9,7 @@ include('dbcon.php'); // Include your PDO database connection file
 // Handle form submission to create a new event
 if (isset($_POST['create'])) {
     $event_name = $_POST['main_event'];
+    $description = $_POST['description'];
     $event_start_date = $_POST['date_start'];
     $event_end_date = $_POST['date_end'];
     $event_time = $_POST['event_time'];
@@ -17,11 +18,12 @@ if (isset($_POST['create'])) {
     $target = "../img/" . basename($banner);
 
     // Insert event details into the database using PDO
-    $sql = "INSERT INTO main_event (event_name, status, organizer_id, date_start, date_end, place, banner) 
+    $sql = "INSERT INTO main_event (event_name, description, status, organizer_id, date_start, date_end, place, banner) 
             VALUES (:event_name, 'activated', :organizer_id, :date_start, :date_end, :place, :banner)";
     $stmt = $conn->prepare($sql);
 
     $stmt->bindParam(':event_name', $event_name);
+    $stmt->bindParam(':description', $description);
     $stmt->bindParam(':organizer_id', $session_id);
     $stmt->bindParam(':date_start', $event_start_date);
     $stmt->bindParam(':date_end', $event_end_date);
@@ -417,6 +419,12 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             style="text-indent: 5px !important; height: 30px !important;" required />
                                     </div>
                                     <div class="form-group">
+                                        <label for="description"><strong>Description:</strong></label>
+                                        <textarea name="description" class="form-control btn-block"
+                                            style="text-indent: 5px !important; height: 100px !important;"
+                                            placeholder="Description" required></textarea>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="place"><strong>Venue:</strong></label>
                                         <input type="text" name="place" class="form-control btn-block"
                                             style="text-indent: 5px !important; height: 30px !important;"
@@ -453,6 +461,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h3><?php echo htmlspecialchars($event['event_name']); ?></h3>
                 <p><?php echo date('m-d-Y', strtotime($event['date_start'])); ?> to
                 <?php echo date('m-d-Y', strtotime($event['date_end'])); ?></p>
+                <p><?php echo htmlspecialchars($event['description']); ?></p>
                 <p><?php echo htmlspecialchars($event['place']); ?></p>
             </div>
             <?php } ?>
@@ -493,6 +502,11 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <input type="date" class="form-control btn-block" style="height: 30px !important;" id="edit_date_end" name="edit_date_end" required>
                     </div>
                     
+                    <div class="form-group">
+                        <label for="edit_event_description">Description:</label>
+                        <textarea class="form-control btn-block" style="text-indent: 7px !important; height: 100px !important;" id="edit_event_description" name="edit_event_description" required></textarea>
+                    </div>
+
                     <div class="form-group">
                         <label for="edit_place">Venue:</label>
                         <input type="text" class="form-control btn-block" style="height: 30px !important;" id="edit_place" name="edit_place" required>

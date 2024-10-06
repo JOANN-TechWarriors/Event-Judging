@@ -322,7 +322,7 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $currentDate = date('Y-m-d');
 
 // Query to fetch ongoing and activated events
-$sql = "SELECT mainevent_id, event_name, date_start, date_end, place, banner 
+$sql = "SELECT mainevent_id, event_name, description, date_start, date_end, place, banner 
         FROM main_event 
         WHERE :currentDate BETWEEN date_start AND date_end AND status = 'activated'";
 $stmt = $conn->prepare($sql);
@@ -341,6 +341,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <img class="d-block w-100" src="img/<?= htmlspecialchars($event['banner']) ?>" alt="<?= htmlspecialchars($event['event_name']) ?>">
           <div class="carousel-caption d-none d-md-block">
             <h5 style="color:white; font-size: large;"><?= htmlspecialchars($event['event_name']) ?></h5>
+            <p class="description"><?= nl2br(htmlspecialchars($event['description'])) ?></p>
             <p><?= htmlspecialchars(date("F j, Y", strtotime($event['date_start']))) ?> - <?= htmlspecialchars(date("F j, Y", strtotime($event['date_end']))) ?><br><?= htmlspecialchars($event['place']) ?></p>
           </div>
         </div>
