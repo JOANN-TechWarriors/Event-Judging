@@ -161,13 +161,14 @@
 
 <?php 
 if (isset($_POST['register'])) {
-   $fname = $_POST['fname']; 
-   $mname = $_POST['mname'];  
-   $lname = $_POST['lname'];  
-  //  $email = $_POST['email']; 
-   $username = $_POST['username'];  
-   $password = $_POST['password'];  
-   $password2 = $_POST['password2'];  
+   $fname = htmlspecialchars($_POST['fname']);
+   $mname = htmlspecialchars($_POST['mname']);  
+   $lname = htmlspecialchars($_POST['lname']);  
+   //  $email = $_POST['email']; 
+   $username = htmlspecialchars($_POST['username']);  
+   $password = htmlspecialchars($_POST['password']);  
+   $password2 = htmlspecialchars($_POST['password2']);  
+  
   
    if ($password == $password2) {
      $stmt =  $conn->query("insert into organizer(fname,mname,lname,username,password,access,status)values('$fname','$mname','$lname','$username','$password','Organizer','offline')");
