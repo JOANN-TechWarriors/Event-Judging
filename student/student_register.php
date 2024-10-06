@@ -142,11 +142,11 @@ By creating an account, you agreed by the terms and conditions.<br>
 
 <?php 
 if(isset($_POST['register'])) {
-   $fname = $_POST['fname'];
-   $mname = $_POST['mname'];
-   $lname = $_POST['lname'];
-   $course = $_POST['course'];
-   $student_id = $_POST['student_id'];
+   $fname = htmlspecialchars($_POST['fname']);
+   $mname = htmlspecialchars($_POST['mname']);
+   $lname = htmlspecialchars($_POST['lname']);
+   $course = htmlspecialchars($_POST['course']);
+   $student_id = htmlspecialchars($_POST['student_id']);
 
    // Database connection
    include('../admin/dbcon.php');
