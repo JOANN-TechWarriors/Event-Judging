@@ -268,15 +268,7 @@ include('..//admin/session.php');
             <br />
             <div class="col-md-15">
                 <ul class="breadcrumb">
-                    <li>
-                        <a href="dashboard.php">Dashboard</a> /
-                    </li>
-                    <li>
-                        <a href="#">Ongoing Events</a> /
-                    </li>
-                    <li>
-                        <a href="#">Upcoming Events</a> /
-                    </li>
+                    
                     <li>Score Sheets</li>
                 </ul>
             </div>

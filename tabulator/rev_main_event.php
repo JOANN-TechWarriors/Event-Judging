@@ -157,7 +157,6 @@
         background-color: #f1f1f1;
     }
 
-
     @media (max-width: 768px) {
         .sidebar {
             width: 100%;
@@ -217,20 +216,24 @@
       <div>Event Judging System</div>
     </div>
     <ul>
+        <li><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> <span>DASHBOARD</span></a></li>
+        <li><a href="home.php"><i class="fas fa-calendar-check"></i> <span>ONGOING EVENTS</span></a></li>
+        <li><a href="upcoming_events.php"><i class="fas fa-calendar-alt"></i> <span>UPCOMING EVENTS</span></a></li>
         <li><a href="score_sheets.php"><i class="fas fa-clipboard-list"></i> <span>SCORE SHEETS</span></a></li>
         <li><a href="rev_main_event.php"><i class="fas fa-chart-line"></i> <span>DATA REVIEWS</span></a></li>
+        <li><a href="live.php"><i class="fas fa-camera"></i> <span>LIVE</span></a></li>
     </ul>
   </div>
     
-    <!-- Header -->
-    <div class="header">
+  <!-- Header -->
+  <div class="header">
         <div>
             <!-- Add any left-aligned content here if needed -->
         </div>
         <div class="profile-dropdown">
            <div style="font-size:small;"> <?php echo $tabname ;?></div>
             <div class="dropdown-menu">
-                <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> <span>LOGOUT</span></a>
+                <a href="logout.php"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
             </div>
         </div>
     </div>
@@ -251,7 +254,7 @@
     </div>
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
-      <form method="POST" target="_self" action="../admin/review_search.php">
+      <form method="POST" target="_self" action="review_search.php">
         <input style="font-size: large; height: 45px !important; text-indent: 7px !important;" class="form-control btn-block" name="txtsearch" placeholder="Enter a keyword and search..." />  
         <br />
         <button class="btn btn-info pull-right" style="width: 150px !important;"><i class="icon-search"></i> <strong>SEARCH</strong></button> 
@@ -266,7 +269,7 @@
           <h3 class="panel-title">Select Main Event</h3>
         </div>
         <div class="panel-body">
-          <form method="POST" action="../admin/rev_sub_event.php">
+          <form method="POST" action="rev_sub_event.php">
             <table class="table table-bordered">
               <thead>
                 <th></th>
