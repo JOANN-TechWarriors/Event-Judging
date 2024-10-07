@@ -221,16 +221,15 @@
     </ul>
   </div>
     
-  <!-- Header -->
-  <div class="header">
+    <!-- Header -->
+    <div class="header">
         <div>
             <!-- Add any left-aligned content here if needed -->
         </div>
         <div class="profile-dropdown">
-           <div style="font-size:small;"> <?php echo $name; ?></div>
+           <div style="font-size:small;"> <?php echo $tabname ;?></div>
             <div class="dropdown-menu">
-                <a href="edit_organizer.php"> Account Settings</a>
-                <a href="logout.php"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+                <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> <span>LOGOUT</span></a>
             </div>
         </div>
     </div>
