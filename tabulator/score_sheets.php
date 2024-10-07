@@ -253,7 +253,7 @@ include('..//admin/session.php');
         <div class="profile-dropdown">
            <div style="font-size:small;"> <?php echo $tabname ;?></div>
             <div class="dropdown-menu">
-                <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> <span>LOGOUT</span></a>
+                <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> <span>Sign out</span></a>
             </div>
         </div>
     </div>
@@ -268,7 +268,7 @@ include('..//admin/session.php');
             <br />
             <div class="col-md-15">
                 <ul class="breadcrumb">
-                    
+
                     <li>Score Sheets</li>
                 </ul>
             </div>
