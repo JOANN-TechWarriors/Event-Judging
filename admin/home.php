@@ -232,7 +232,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     .tile {
-        background-color: #f0ffff;
+        background-color: #00ffff;
         padding: 20px;
         border-radius: 10px;
         text-align: center;
