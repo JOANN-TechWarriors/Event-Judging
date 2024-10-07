@@ -18,7 +18,7 @@ if (isset($_POST['create'])) {
 
     // Insert event details into the database using PDO
     $sql = "INSERT INTO main_event (event_name, description, status, organizer_id, date_start, date_end, place, banner) 
-            VALUES (:event_name, 'activated', :organizer_id, :date_start, :date_end, :place, :banner)";
+            VALUES (:event_name, :description, 'activated', :organizer_id, :date_start, :date_end, :place, :banner)";
     $stmt = $conn->prepare($sql);
 
     $stmt->bindParam(':event_name', $event_name);
