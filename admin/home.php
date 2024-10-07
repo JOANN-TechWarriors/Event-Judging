@@ -12,7 +12,6 @@ if (isset($_POST['create'])) {
     $description = $_POST['description'];
     $event_start_date = $_POST['date_start'];
     $event_end_date = $_POST['date_end'];
-    $event_time = $_POST['event_time'];
     $event_venue = $_POST['place'];
     $banner = $_FILES['banner']['name'];
     $target = "../img/" . basename($banner);
