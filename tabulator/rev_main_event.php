@@ -251,7 +251,7 @@
     </div>
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
-      <form method="POST" target="_self" action="review_search.php">
+      <form method="POST" target="_self" action="../admin/review_search.php">
         <input style="font-size: large; height: 45px !important; text-indent: 7px !important;" class="form-control btn-block" name="txtsearch" placeholder="Enter a keyword and search..." />  
         <br />
         <button class="btn btn-info pull-right" style="width: 150px !important;"><i class="icon-search"></i> <strong>SEARCH</strong></button> 
@@ -266,7 +266,7 @@
           <h3 class="panel-title">Select Main Event</h3>
         </div>
         <div class="panel-body">
-          <form method="POST" action="rev_sub_event.php">
+          <form method="POST" action="../admin/rev_sub_event.php">
             <table class="table table-bordered">
               <thead>
                 <th></th>
@@ -281,10 +281,10 @@
                   <td width="10" align="center"><input type="radio" name="main_event_id" value="<?php echo $mainevent_row['mainevent_id']; ?>" required="true" /></td>
                   <td> <?php echo $mainevent_row['event_name']; ?></td>
                   <td width="10">
-                    <a target="_blank" title="click to print summary result" href="../admin/summary_results.php?main_event_id=<?php echo $mainevent_row['mainevent_id']; ?>" class="btn btn-warning"><i class="icon-list"></i></a>
+                    <a target="_blank" title="click to print summary result" href="summary_results.php?main_event_id=<?php echo $mainevent_row['mainevent_id']; ?>" class="btn btn-warning"><i class="icon-list"></i></a>
                   </td>
                   <td width="10"> 
-                    <a target="_blank" title="click to print event result" href="../admin/print_all_results.php?main_event_id=<?php echo $mainevent_row['mainevent_id']; ?>" class="btn btn-info"><i class="icon-print"></i></a>
+                    <a target="_blank" title="click to print event result" href="print_all_results.php?main_event_id=<?php echo $mainevent_row['mainevent_id']; ?>" class="btn btn-info"><i class="icon-print"></i></a>
                   </td>
                 </tr>
                 <?php } ?>
