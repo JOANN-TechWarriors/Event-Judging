@@ -112,7 +112,7 @@
 
     .header {
         background-color: #f8f9fa;
-        padding: 10px 20px;
+        padding: 20px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
