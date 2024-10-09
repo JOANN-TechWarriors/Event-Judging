@@ -138,6 +138,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         text-decoration: none;
         display: flex;
         align-items: center;
+        font-size: 14px;
     }
 
     .sidebar ul li a i {
@@ -282,7 +283,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         .sidebar ul li a {
-            font-size: 25px;
+            font-size: 14px;
         }
 
         .header {
