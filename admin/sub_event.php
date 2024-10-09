@@ -597,7 +597,7 @@ if (isset($_POST['edit_se'])) {
                     </div>
                     <div class="form-group">
                         <label for="edit_entered_pass">Enter your password to confirm:</label>
-                        <input type="password" class="form-control" style="text-indent: 5px !important; height: 30px !important;" id="edit_entered_pass" name="entered_pass" required>
+                        <input type="password" class="form-control btn-block" style="text-indent: 5px !important; height: 30px !important;" id="edit_entered_pass" name="entered_pass" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -626,7 +626,7 @@ if (isset($_POST['edit_se'])) {
                     <input type="hidden" id="activation_status" name="status">
                     <div class="form-group">
                         <label for="activation_entered_pass">Enter your password to confirm:</label>
-                        <input type="password" class="form-control" style="text-indent: 5px !important; height: 30px !important;" id="activation_entered_pass" name="check_pass" required>
+                        <input type="password" class="form-control btn-block" style="text-indent: 5px !important; height: 30px !important;" id="activation_entered_pass" name="check_pass" required>
                     </div>
                 </div>
                 <div class="modal-footer">
