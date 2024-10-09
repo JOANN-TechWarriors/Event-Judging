@@ -206,17 +206,16 @@ if (isset($_POST['edit_se'])) {
     .sidebar .toggle-btn {
         position: absolute;
         top: 10px;
-        right: -2px;
+        right: 18px;
         background-color: transparent;
         color: #fff;
         border: none;
         cursor: pointer;
         transition: all 0.3s;
-        font-size: 20px;
     }
 
     .sidebar .toggle-btn i {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .sidebar-heading {
@@ -238,8 +237,7 @@ if (isset($_POST['edit_se'])) {
     }
 
     .sidebar ul li {
-        padding: 10px;
-        border-bottom: 1px solid #555;
+        padding: 15px 20px;
         transition: all 0.3s;
     }
 
@@ -271,7 +269,7 @@ if (isset($_POST['edit_se'])) {
     }
 
     .sidebar ul li a:hover {
-        background-color: #555;
+        background-color: #1a1a2e;
     }
 
     .main {
