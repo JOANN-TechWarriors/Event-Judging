@@ -270,16 +270,6 @@ include('..//admin/session.php');
             <h1>Score Sheets</h1>
         </div>
 
-        <div class="span15">
-            <br />
-            <div class="col-md-15">
-                <ul class="breadcrumb">
-
-                    <li>Score Sheets</li>
-                </ul>
-            </div>
-        </div>
-
 <?php
     
     $sy_query = $conn->query("select * FROM main_event where organizer_id='$session_id' AND status='activated'") or die(mysql_error());
