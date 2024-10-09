@@ -25,16 +25,16 @@ include('..//admin/session.php');
         }
 
         .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 250px;
-            background-color: #333;
-            color: #fff;
-            padding-top: 60px;
-            transition: all 0.3s;
-            overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #27293d;
+        color: #fff;
+        padding-top: 20px;
+        transition: all 0.3s;
+        overflow: hidden;
         }
 
         .sidebar.collapsed {
@@ -43,8 +43,8 @@ include('..//admin/session.php');
 
         .sidebar .toggle-btn {
             position: absolute;
-            top: 15px;
-            right: -0px;
+            top: 10px;
+            right: 18px;
             background-color: transparent;
             color: #fff;
             border: none;
@@ -53,7 +53,14 @@ include('..//admin/session.php');
         }
 
         .sidebar .toggle-btn i {
+            font-size: 20px;
+        }
+
+        .sidebar-heading {
+            text-align: center;
+            padding: 10px 0;
             font-size: 18px;
+            margin-bottom: 10px;
         }
 
         .sidebar-heading img {
@@ -68,9 +75,8 @@ include('..//admin/session.php');
         }
 
         .sidebar ul li {
-            padding: 10px;
+            padding: 15px 20px;
             transition: all 0.3s;
-            font-size: 15px;
         }
 
         .sidebar ul li a {
@@ -101,7 +107,7 @@ include('..//admin/session.php');
         }
 
         .sidebar ul li a:hover {
-            background-color: #555;
+            background-color: #1a1a2e;
         }
 
         .main {
