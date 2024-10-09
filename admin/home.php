@@ -126,6 +126,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         list-style-type: none;
         padding: 0;
         margin: 0;
+        font-size: 14px;
     }
 
     .sidebar ul li {
@@ -144,6 +145,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     .sidebar ul li a i {
         margin-right: 10px;
         transition: margin 0.3s;
+        font-size: 14px;
     }
 
     .sidebar.collapsed ul li a i {
@@ -161,9 +163,6 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         overflow: hidden;
     }
 
-    .sidebar ul li a:hover {
-        background-color: #1a1a2e;
-    }
 
     .main {
         margin-left: 250px;
