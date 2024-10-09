@@ -282,7 +282,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         .sidebar ul li a {
-            font-size: 14px;
+            font-size: 25px;
         }
 
         .header {
