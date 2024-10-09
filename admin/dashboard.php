@@ -251,7 +251,7 @@
 
     <!-- Main content -->
     <div class="main" id="main">
-        <h1>Dashboard</h1>
+        <h1 style="font-size: 35px;">Dashboard</h1>
         <!-- Event Cards -->
         <div class="row">
             <div class="col-md-6 mb-4">
