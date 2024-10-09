@@ -163,6 +163,9 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         overflow: hidden;
     }
 
+    .sidebar ul li a:hover {
+        background-color: #1a1a2e;
+    }
 
     .main {
         margin-left: 250px;
