@@ -231,10 +231,9 @@
             <!-- Add any left-aligned content here if needed -->
         </div>
         <div class="profile-dropdown">
-           <div style="font-size:small;"> <?php echo $name; ?></div>
+           <div style="font-size:small;"> <?php echo $tabname ;?></div>
             <div class="dropdown-menu">
-                <a href="edit_organizer.php"> Account Settings</a>
-                <a href="logout.php"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+                <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> <span>Sign out</span></a>
             </div>
         </div>
     </div>
@@ -248,10 +247,7 @@
     <div class="span15">
       <div class="col-md-12">
         <ul class="breadcrumb">
-          <li><a href="dashboard.php">Dashboard</a> /</li>
-          <li><a href="home.php">Ongoing Events</a> /</li>
-          <li><a href="upcoming_events.php">Upcoming Events</a> /</li>
-          <li><a href="score_sheets.php">Score Sheets</a> /</li>
+          <li><a href="../tabulator/score_sheets.php">Score Sheets</a> /</li>
           <li>Data Reviews</li>
         </ul>
       </div>
