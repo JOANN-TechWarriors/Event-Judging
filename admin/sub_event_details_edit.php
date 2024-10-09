@@ -85,6 +85,8 @@ $se_row = $se_query->fetch();
         text-decoration: none;
         display: flex;
         align-items: center;
+        font-size: 16px;
+
     }
 
     .sidebar ul li a i {
