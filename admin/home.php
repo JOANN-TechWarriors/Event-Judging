@@ -134,6 +134,13 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         transition: all 0.3s;
     }
 
+    .sidebar ul li a {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+    }
 
     .sidebar ul li a i {
         margin-right: 10px;
