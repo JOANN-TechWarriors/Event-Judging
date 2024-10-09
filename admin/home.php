@@ -113,7 +113,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     .sidebar-heading {
         text-align: center;
         padding: 10px 0;
-        font-size: 16px;
+        font-size: 18px;
         margin-bottom: 10px;
     }
 
@@ -282,7 +282,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     @media (max-width: 576px) {
         .sidebar-heading {
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .sidebar ul li a {
