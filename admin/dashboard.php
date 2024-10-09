@@ -253,6 +253,7 @@
     <div class="main" id="main">
         <h1 style="font-size: 35px;">Dashboard</h1>
         <!-- Event Cards -->
+         <br><br>
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="card bg-gradient-info text-black" style="background-color: #e3f7fd;">
