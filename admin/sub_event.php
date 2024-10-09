@@ -593,7 +593,7 @@ if (isset($_POST['edit_se'])) {
                     <input type="hidden" id="edit_se_name" name="se_name">
                     <div class="form-group">
                         <label for="se_new_name">New Sub-Event Name:</label>
-                        <input type="text" class="form-control" style="text-indent: 5px !important; height: 30px !important;" id="se_new_name" name="se_new_name" required>
+                        <input type="text" class="form-control btn-block" style="text-indent: 5px !important; height: 30px !important;" id="se_new_name" name="se_new_name" required>
                     </div>
                     <div class="form-group">
                         <label for="edit_entered_pass">Enter your password to confirm:</label>
