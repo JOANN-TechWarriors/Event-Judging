@@ -593,11 +593,11 @@ if (isset($_POST['edit_se'])) {
                     <input type="hidden" id="edit_se_name" name="se_name">
                     <div class="form-group">
                         <label for="se_new_name">New Sub-Event Name:</label>
-                        <input type="text" class="form-control" id="se_new_name" name="se_new_name" required>
+                        <input type="text" class="form-control" style="text-indent: 5px !important; height: 30px !important;" id="se_new_name" name="se_new_name" required>
                     </div>
                     <div class="form-group">
                         <label for="edit_entered_pass">Enter your password to confirm:</label>
-                        <input type="password" class="form-control" id="edit_entered_pass" name="entered_pass" required>
+                        <input type="password" class="form-control" style="text-indent: 5px !important; height: 30px !important;" id="edit_entered_pass" name="entered_pass" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -626,7 +626,7 @@ if (isset($_POST['edit_se'])) {
                     <input type="hidden" id="activation_status" name="status">
                     <div class="form-group">
                         <label for="activation_entered_pass">Enter your password to confirm:</label>
-                        <input type="password" class="form-control" id="activation_entered_pass" name="check_pass" required>
+                        <input type="password" class="form-control" style="text-indent: 5px !important; height: 30px !important;" id="activation_entered_pass" name="check_pass" required>
                     </div>
                 </div>
                 <div class="modal-footer">
