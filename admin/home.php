@@ -134,13 +134,6 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         transition: all 0.3s;
     }
 
-    .sidebar ul li a {
-        color: #fff;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        font-size: 14px;
-    }
 
     .sidebar ul li a i {
         margin-right: 10px;
@@ -165,7 +158,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     .sidebar ul li a:hover {
         background-color: #1a1a2e;
-        font-size: 14px;
+        
     }
 
     .main {
