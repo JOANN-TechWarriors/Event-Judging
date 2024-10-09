@@ -565,7 +565,7 @@ if (isset($_POST['edit_se'])) {
                     <input type="hidden" id="delete_sub_event_name" name="sub_event_name">
                     <div class="form-group">
                         <label for="entered_pass">Enter your password to confirm:</label>
-                        <input type="password" class="form-control" style="text-indent: 5px !important; height: 30px !important;" id="entered_pass" name="entered_pass" required>
+                        <input type="password" class="form-control btn-block" style="text-indent: 5px !important; height: 30px !important;" id="entered_pass" name="entered_pass" required>
                     </div>
                 </div>
                 <div class="modal-footer">
