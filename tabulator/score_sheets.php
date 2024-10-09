@@ -267,7 +267,7 @@ include('..//admin/session.php');
     <!-- Subhead ================================================== -->
     <div class="main" id="main-content">
         <div class="container">
-            <h1 style="font-size: 30px;">Score Sheets</h1>
+            <h1 style="font-size: 35px;">Score Sheets</h1>
         </div>
 
 
