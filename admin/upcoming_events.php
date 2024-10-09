@@ -300,7 +300,7 @@
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+            right: 'dayGridMonth,listMonth'
         },
         initialDate: '<?php echo date('Y-m-d') ?>',
         weekNumbers: true,
