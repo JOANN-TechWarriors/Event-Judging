@@ -152,6 +152,7 @@
     
     <br />
     <div class="col-md-12">
+      <ul class="breadcrumb">
         <li><a href="rev_main_event.php">DR: Main Event List</strong></i></a> / </li>
         <li>DR: Main Event <i><strong><?php echo $m_event_name; ?></strong></i> - Event List</li>
       </ul>
