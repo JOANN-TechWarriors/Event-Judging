@@ -276,14 +276,13 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
             margin-left: 0;
         }
     }
-
     @media (max-width: 576px) {
         .sidebar-heading {
-            font-size: 20px;
+            font-size: 14px;
         }
 
         .sidebar ul li a {
-            font-size: 20%;
+            font-size: 14px;
         }
 
         .header {
@@ -295,6 +294,8 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
             height: 30px;
         }
     }
+
+
     .tile {
     position: relative;
     /* ... other existing styles ... */
