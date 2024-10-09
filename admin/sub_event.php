@@ -246,6 +246,8 @@ if (isset($_POST['edit_se'])) {
         text-decoration: none;
         display: flex;
         align-items: center;
+        font-size: 16px;
+
     }
 
     .sidebar ul li a i {
