@@ -280,7 +280,7 @@
             <div class="col-md-6 mb-4">
                 <div class="card bg-gradient-info text-black" style="background-color: #b0ffc3;">
                     <div class="card-body">
-                        <h4 class="font-weight-normal mb-3" style="font-size: 15px;">Upcoming Events</h4>
+                        <h4 class="font-weight-normal mb-3" style="font-size: 20px;">Upcoming Events</h4>
                         <?php 
                             $database = mysqli_connect('127.0.0.1', 'u510162695_judging_root', '1Judging_root', 'u510162695_judging');
                             // Assuming $session_id contains the current organizer's ID
