@@ -98,7 +98,7 @@ if (isset($_SESSION['login_error'])) {
             <div class="span12">
               <div class="motto">
                 <h3><p>WELCOME&nbsp;&nbsp;TO:</p></h3>
-                <h2><p><strong>MCC Event Judging System</strong></p></h2>
+                <h2><p><strong>MCC Event Judging Systems</strong></p></h2>
               </div>
             </div>
           </div>
