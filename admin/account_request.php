@@ -30,7 +30,12 @@ if (isset($_POST['accept'])) {
     mysqli_query($conn, $up);
     header('location: account_request.php');
 }
-
+if (isset($_POST['accept_student'])) {
+    $student_id = $_POST['schoolid'];
+    $up = "UPDATE student SET request_status = 'Approved' WHERE schoolid = $student_id";
+    mysqli_query($conn, $up);
+    header('location: account_request.php?filter_user_type=Student');
+}
   ?>
 <head>
 <meta charset="UTF-8">
@@ -280,7 +285,21 @@ if (isset($_POST['accept'])) {
         <h1>Account Request</h1>
         <div class="row">
             <div class="col-md-12">
+               <div class="d-flex justify-content-end mb-2">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Select user type
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="?filter_user_type=Organizer">Organizer</a></li>
+                        <li><a class="dropdown-item" href="?filter_user_type=Student">Student</a></li>
+                    </ul>
+                </div>
+               </div>
             <div class="card shadow p-3" style="overflow-y: hidden;">
+                     <?php 
+                if (@$_GET['filter_user_type'] == 'Organizer') { ?>
+                    <h5>Organizer list</h5>
                     <div class="data_table">
                         <table id="printable" class="table table-striped table-bordered">
                             <thead class="table">
@@ -340,6 +359,130 @@ if (isset($_POST['accept'])) {
                             </tbody>
                         </table>
                     </div>
+                <?php }
+                elseif (@$_GET['filter_user_type'] == 'Student') { ?>
+                  <h5>Student list</h5>
+                    <div class="data_table">
+                        <table id="printable" class="table table-striped table-bordered">
+                            <thead class="table">
+                                <tr>
+                                    <th>School ID</th>
+                                    <th>Name</th>
+                                    <th>Request Date</th>
+                                    <th width="70px">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $sql = "SELECT * FROM student";
+                                $result = mysqli_query($conn ,$sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                <tr>
+                                    <td><?=$row['student_id'];?></td>
+                                    <td><?=$row['fname']." ".$row['lname'];?></td>
+                                    <td><?=date('M d, Y h:i a', strtotime($row['request_date']));?></td>
+                                    <td>
+                                        <?php 
+                                        if ($row['request_status'] != '') {
+                                            ?>
+                                            <span class="badge bg-warning">Approved</span>
+                                            <?php
+                                        }else{
+                                            ?>
+                                            <a href="#" class="badge bg-info text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal<?=$row['schoolid']?>">Pending</a>
+                                            <?php 
+                                        }
+                                        ?>
+                                    </td>
+                                </tr>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal<?=$row['schoolid']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Do you want to approve <?=$row['fname']?>'s account request?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <form method="post">
+                                            <input type="text" name="schoolid" value="<?=$row['schoolid']?>" style="display: none;">
+                                            <button type="submit" name="accept_student" class="btn btn-primary">Approve</button>
+                                            </form>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php }else{?>
+                <h5>Organizer list</h5>
+                    <div class="data_table">
+                        <table id="printable" class="table table-striped table-bordered">
+                            <thead class="table">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Request Date</th>
+                                    <th width="70px">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $sql = "SELECT * FROM organizer";
+                                $result = mysqli_query($conn ,$sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                <tr>
+                                    <td><?=$row['organizer_id'];?></td>
+                                    <td><?=$row['fname']." ".$row['lname'];?></td>
+                                    <td><?=date('M d, Y h:i a', strtotime($row['request_date']));?></td>
+                                    <td>
+                                        <?php 
+                                        if ($row['request_status'] != '') {
+                                            ?>
+                                            <span class="badge bg-warning">Approved</span>
+                                            <?php
+                                        }else{
+                                            ?>
+                                            <a href="#" class="badge bg-info text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal<?=$row['organizer_id']?>">Pending</a>
+                                            <?php 
+                                        }
+                                        ?>
+                                    </td>
+                                </tr>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal<?=$row['organizer_id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Do you want to approve <?=$row['fname']?>'s account request?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <form method="post">
+                                            <input type="text" name="org_id" value="<?=$row['organizer_id']?>" style="display: none;">
+                                            <button type="submit" name="accept" class="btn btn-primary">Approve</button>
+                                            </form>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php } ?>
                 </div>
             </div>
         </div>
