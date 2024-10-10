@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Prepare and execute the query
         $stmt = $conn->prepare("SELECT * FROM student WHERE student_id = :student_id");
         $stmt->bindParam(':student_id', $student_id, PDO::PARAM_STR);
+        $row = $stmt->fetch();
         $stmt->execute();
         
         if ($stmt->rowCount() > 0) {
