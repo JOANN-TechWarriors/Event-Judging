@@ -11,7 +11,7 @@ include('../admin/header.php');
         .close { cursor: pointer; float: right; }
     </style>
 <div class="container">
-   <div class="col-lg-3">  </div>
+   <div class="col-lg-3">   </div>
    <div class="col-lg-6">
       <br><br>
       <div class="panel panel-danger">
