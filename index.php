@@ -416,7 +416,70 @@ if ($result && $result->num_rows > 0) {
 }
 $conn->close();
 ?>
+<div class="coffee_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="z-index:-1000;">
+                <h1 class="coffee_taital">ONGOING EVENTS</h1>
+            </div>
+        </div>
+    </div>
+    <div class="coffee_section_2">
+        <div id="main_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+            <?php
+        $isActive = true;
+        $totalEvents = count($subEvents);
+        for ($i = 0; $i < $totalEvents; $i += 3) {
+            $activeClass = $isActive ? 'active' : '';
+            $isActive = false;
+            echo '<div class="carousel-item ' . $activeClass . '">';
+            echo '    <div class="container-fluid">';
+            echo '        <div class="row">';
+            
+            for ($j = $i; $j < $i + 3 && $j < $totalEvents; $j++) {
+                $event = $subEvents[$j];
+                $isPollActive = $event['view'] == 'active'; // Assuming 'activated' is the value for active status
+                echo '            <div class="col-lg-4 col-md-6 mb-4">';
+                echo '                <div class="coffee_img"><img src="img/' . htmlspecialchars($event['banner']) . '" alt="Event Image"></div>';
+                echo '                <div class="coffee_box">';
+                echo '                    <h3 class="types_text">' . htmlspecialchars($event['event_name']) . '</h3>';
+                echo '                    <p class="looking_text">';
+                echo '                        Start Date: ' . htmlspecialchars(date("F j, Y", strtotime($event['eventdate']))) . '<br>';
+                echo '                        End Date: ' . htmlspecialchars(date("F j, Y", strtotime($event['eventtime']))) . '<br>';
+                echo '                        Location: ' . htmlspecialchars($event['place']) . '</p>';
+                echo '<form action="check_student_login.php" method="GET" style="display: inline;">';
+                echo '    <input type="hidden" name="event" value="' . htmlspecialchars($event['subevent_id']) . '">';
+                echo '    <button type="submit" class="btn btn-primary"' . ($isPollActive ? '' : ' disabled') . '>View</button>';
+                echo '</form>';
+                echo '                </div>';
+                echo '            </div>';
+            }
+            
+            echo '        </div>';
+            echo '    </div>';
+            echo '</div>';
+        }
+        ?>
 
+
+<style>
+    button.btn.btn-primary {
+    z-index: 1000; /* Adjust if necessary */
+    position: relative;
+}
+
+</style>
+            </div>
+            <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+                <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
 
 
 <!-- ongoing section end -->
@@ -435,73 +498,7 @@ $host = '127.0.0.1';
 	    die("Connection failed: " . $conn->connect_error);
 	}
 
-// Query to fetch upcoming events
-$sql = "SELECT `id`, `title`, `start_date`, `end_date`, `banner` FROM `upcoming_events` WHERE 1";
-$result = $conn->query($sql);
 
-// Generate HTML for carousel items
-$carouselItems = '';
-$isActive = true;
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $activeClass = $isActive ? 'active' : '';
-        $isActive = false;
-
-        $carouselItems .= '
-        <div class="carousel-item ' . $activeClass . '">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="about_taital">Upcoming Events</h1>
-                </div>
-            </div>
-            <div class="client_section_2">
-                <div class="client_taital_main">
-                    <div class="client_left">
-                        <img class="d-block w-80" src="img/' . htmlspecialchars($row['banner']) . '" alt="' . htmlspecialchars($row['title']) . '">
-                    </div>
-                    <div class="client_right">
-                        <h3 class="moark_text">' . htmlspecialchars($row["title"]) . '</h3>
-                        <p class="client_text">Start Date: ' . htmlspecialchars(date("F j, Y", strtotime($row["start_date"]))) . '<br>End Date: ' . htmlspecialchars(date("F j, Y", strtotime($row["end_date"]))) . '</p>
-                    </div>
-                </div>
-            </div>
-        </div>';
-    }
-} else {
-    $carouselItems = '
-    <div class="carousel-item active">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="about_taital">No Upcoming Events</h1>
-            </div>
-        </div>
-    </div>';
-}
-
-$conn->close();
-?>
-
-<!-- client section start -->
-<div class="client_section layout_padding">
-    <div class="container">
-        <div id="custom_slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <?php echo $carouselItems; ?>
-            </div>
-            <a class="carousel-control-prev" href="#custom_slider" role="button" data-slide="prev">
-                <i class="fa fa-arrow-left"></i>
-            </a>
-            <a class="carousel-control-next" href="#custom_slider" role="button" data-slide="next">
-                <i class="fa fa-arrow-right"></i>
-            </a>
-            <br><br><br>
-        </div>
-    </div>
-</div>
-<!-- client section end -->
-<!-- upcoming section end -->
- 
 <!-- about section start -->
       </div>
       <div class="about_section layout_padding">
