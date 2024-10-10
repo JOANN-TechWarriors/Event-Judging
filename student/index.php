@@ -12,15 +12,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare("SELECT * FROM student WHERE student_id = :student_id");
         $stmt->bindParam(':student_id', $student_id, PDO::PARAM_STR);
         $stmt->execute();
-
+        
         if ($stmt->rowCount() > 0) {
-            // Student exists, start session
-            $_SESSION['student_id'] = $student_id;
-            $_SESSION['login_success'] = true;
-
-            // Redirect to the login page to trigger JavaScript
-            header("Location: index.php");
-            exit();
+            if ($row['request_status'] == '') {
+                ?>
+                <script>
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Sorry, Your account is not yet approve by the admin',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location = 'index.php';
+                            }
+                        });
+                </script>
+                <?php
+            }elseif($row['request_status'] == 'Approved'){
+                 // Student exists, start session
+                $_SESSION['student_id'] = $student_id;
+                $_SESSION['login_success'] = true;
+                // Redirect to the login page to trigger JavaScript
+                header("Location: index.php");
+                exit();
+            }
         } else {
             $_SESSION['login_error'] = "Invalid Student ID";
         }
