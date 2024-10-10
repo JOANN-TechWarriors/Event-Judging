@@ -66,7 +66,7 @@ thead th {
                       <div class="span12">
                         <div class="motto">
                         
-                        <h3><p>WELCOME&nbsp;&nbsp;TO:</p></h3>
+                        <h3><p>WELCOME&nbsp;&nbsp;TO :</p></h3>
                         <h2><p><strong>MCC Event Judging System</strong></p></h2>                      
                         </div>                      
                       </div>              
@@ -87,7 +87,7 @@ thead th {
              <br/> 
              <table cellpadding="50" cellspacing="40"  align="center">
              <thead>
-             <th align="left" style="background-color: aquamarine; text-indent: 10px; color: black; "><h4>ORGANIZER LOGIN</h4></th>
+             <th align="left" style="background-color: aquamarine; text-indent: 10px; color: black; "><h4>ORGANIZER LOGIN </h4></th>
              </thead>
              
              <tr style="background-color: #fff;">
