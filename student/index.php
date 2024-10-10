@@ -16,21 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($stmt->rowCount() > 0) {
             if ($row['request_status'] == '') {
-                ?>
-                <script>
-                    Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Sorry, Your account is not yet approve by the admin',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location = 'index.php';
-                            }
-                        });
-                </script>
-                <?php
-            }elseif($row['request_status'] == 'Approved'){
+                $_SESSION['login_error'] = "Sorry, Your account is not yet approve by the admin";
+            } elseif($row['request_status'] == 'Approved'){
                  // Student exists, start session
                 $_SESSION['student_id'] = $student_id;
                 $_SESSION['login_success'] = true;
