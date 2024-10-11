@@ -10,7 +10,7 @@
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
       <link rel="shortcut icon" href="../img/logo.png"/>
-      <title>Event Judging Systems</title>
+      <title>Event Judging System</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
